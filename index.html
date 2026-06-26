@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>दीर्घायु fit with Mayuri</title>
+  <!-- Font Awesome 5 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #faf7f2;
+      color: #1e2b2c;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* header */
+    header {
+      background: #1e3b3a;
+      color: #f5efe6;
+      padding: 1.2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    header .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      font-weight: 300;
+      font-size: 1rem;
+      display: block;
+      color: #d4c9b8;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 0.8rem;
+    }
+
+    nav a {
+      color: #f5efe6;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 30px;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      background: #2d5a57;
+      color: #fff;
+    }
+
+    /* hero / page banner */
+    .page-banner {
+      background: linear-gradient(145deg, #e8ded2, #d6c9b8);
+      padding: 2.5rem 0;
+      text-align: center;
+      border-bottom: 2px solid #c6b7a2;
+    }
+
+    .page-banner h2 {
+      font-size: 2.5rem;
+      color: #1e3b3a;
+      font-weight: 600;
+    }
+
+    .page-banner p {
+      font-size: 1.2rem;
+      color: #2f4a47;
+    }
+
+    /* sections */
+    .section {
+      padding: 3rem 0;
+      border-bottom: 1px solid #e0d6c8;
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .card {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      border: 1px solid #ece3d7;
+    }
+
+    .card h3 {
+      color: #1e3b3a;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid #a67c5b;
+      padding-left: 1rem;
+    }
+
+    .card i {
+      color: #a67c5b;
+      margin-right: 6px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-item i {
+      width: 2rem;
+      font-size: 1.5rem;
+      text-align: center;
+      color: #1e3b3a;
+    }
+
+    .address-block {
+      background: #f3ede6;
+      padding: 1.2rem 1.5rem;
+      border-radius: 18px;
+      margin: 1.2rem 0;
+    }
+
+    .privacy-terms {
+      background: #f3ede6;
+      padding: 1.8rem 2rem;
+      border-radius: 24px;
+      margin: 2rem 0;
+    }
+
+    .privacy-terms h4 {
+      font-size: 1.4rem;
+      color: #1e3b3a;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-terms h4:first-of-type {
+      margin-top: 0;
+    }
+
+    .privacy-terms p {
+      margin-bottom: 0.8rem;
+      color: #2a403e;
+    }
+
+    .footer {
+      background: #1e3b3a;
+      color: #d4c9b8;
+      padding: 2rem 0;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .footer a {
+      color: #e8ddd0;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    .footer .copyright {
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    .footer .copyright i {
+      margin: 0 5px;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .logo h1 {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+
+      .page-banner h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+      }
+
+      .card {
+        padding: 1.2rem;
+      }
+    }
+
+    /* page visibility (simple SPA-like) */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* inline utility */
+    .mt-1 { margin-top: 1rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .text-center { text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>दीर्घायु fit <span>with Mayuri</span></h1>
+      </div>
+      <nav id="mainNav">
+        <a href="#" data-page="home">Home</a>
+        <a href="#" data-page="about">About</a>
+        <a href="#" data-page="contact">Contact</a>
+        <a href="#" data-page="privacy">Privacy</a>
+        <a href="#" data-page="terms">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE: HOME -->
+  <div id="page-home" class="page active">
+    <div class="page-banner">
+      <div class="container">
+        <h2>दीर्घायु fit with Mayuri</h2>
+        <p><i class="fas fa-heart" style="color:#b35e3a;"></i> health &amp; fitness · weight management</p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="grid-2">
+        <div class="card">
+          <h3><i class="fas fa-dumbbell"></i> Our Mission</h3>
+          <p>Empowering you to achieve sustainable weight management and holistic wellness. With personalized guidance and evidence-based fitness strategies, we help you build a healthier, stronger, and more vibrant life.</p>
+          <p style="margin-top:1rem;"><i class="fas fa-check-circle" style="color:#2d7a6e;"></i> Science-based nutrition &amp; exercise plans.</p>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-phone-alt"></i> Get in touch</h3>
+          <div class="contact-item"><i class="fas fa-mobile-alt"></i> <a href="tel:9623569251" style="color:#1e3b3a; text-decoration:none;">9623569251</a></div>
+          <div class="contact-item"><i class="fas fa-envelope"></i> mayurimankar2017@gmail.com</div>
+          <div class="address-block">
+            <i class="fas fa-map-pin" style="color:#a67c5b;"></i> near Ahuja garage, new medical hospital road, Chandrapur 442401
+          </div>
+          <p style="margin-top: 0.5rem; font-style:italic;">“Your journey to a fitter, happier you starts here.”</p>
+        </div>
+      </div>
+      <!-- quick privacy/terms preview -->
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem;">
+        <a href="#" data-page="privacy" style="background:#e8ddd0; padding:0.6rem 1.8rem; border-radius:40px; color:#1e3b3a; text-decoration:none; font-weight:500;"><i class="fas fa-lock"></i> Privacy Policy</a>
+        <a href="#" data-page="terms" style="background:#e8ddd0; padding:0.6rem 1.8rem; border-radius:40px; color:#1e3b3a; text-decoration:none; font-weight:500;"><i class="fas fa-file-contract"></i> Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: ABOUT -->
+  <div id="page-about" class="page">
+    <div class="page-banner">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>weight management · holistic fitness</p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="card" style="max-width: 800px; margin: 0 auto;">
+        <h3><i class="fas fa-leaf"></i> दीर्घायु fit with Mayuri</h3>
+        <p style="font-size:1.2rem;">We are dedicated to transforming lives through sustainable weight management and mindful fitness. Our approach combines modern exercise science, nutritional wisdom, and compassionate coaching.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+          <span style="background:#1e3b3a10; padding:0.4rem 1.2rem; border-radius:40px;"><i class="fas fa-weight"></i> Weight Management</span>
+          <span style="background:#1e3b3a10; padding:0.4rem 1.2rem; border-radius:40px;"><i class="fas fa-heartbeat"></i> Cardio &amp; Strength</span>
+          <span style="background:#1e3b3a10; padding:0.4rem 1.2rem; border-radius:40px;"><i class="fas fa-apple-alt"></i> Nutrition Guidance</span>
+        </div>
+        <p>Based in Chandrapur, we serve clients locally and online. Our founder, Mayuri Mankar, brings years of experience in fitness coaching and a deep passion for helping people achieve their health goals.</p>
+        <div class="address-block" style="margin-top:1.5rem;">
+          <i class="fas fa-store"></i> <strong>Visit us:</strong> near Ahuja garage, new medical hospital road, Chandrapur 442401
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: CONTACT -->
+  <div id="page-contact" class="page">
+    <div class="page-banner">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Reach out — we’re here to help</p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="card" style="max-width: 700px; margin: 0 auto;">
+        <h3><i class="fas fa-address-card"></i> Get in touch</h3>
+        <div class="contact-item"><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:9623569251" style="color:#1e3b3a;">9623569251</a></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> <strong>Email:</strong> mayurimankar2017@gmail.com</div>
+        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> near Ahuja garage, new medical hospital road, Chandrapur 442401</div>
+        <hr style="margin: 1.8rem 0; border-color: #ded3c5;">
+        <p><i class="fas fa-clock" style="color:#a67c5b;"></i> <strong>Business hours:</strong> Mon–Sat, 7:00 AM – 8:00 PM (by appointment)</p>
+        <p style="margin-top:0.5rem;">We respond to messages within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: PRIVACY POLICY -->
+  <div id="page-privacy" class="page">
+    <div class="page-banner">
+      <div class="container">
+        <h2>Privacy Policy</h2>
+        <p>दीर्घायु fit with Mayuri</p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="privacy-terms">
+        <h4><i class="fas fa-shield-alt"></i> Information we collect</h4>
+        <p>We collect personal information such as name, contact details, fitness goals, and health history to tailor our services. We only collect what is necessary for your wellness journey.</p>
+        <h4><i class="fas fa-database"></i> How we use data</h4>
+        <p>Your information is used to design personalized fitness plans, track progress, and communicate with you. We never share your data with third parties without your explicit consent.</p>
+        <h4><i class="fas fa-cookie-bite"></i> Cookies &amp; tracking</h4>
+        <p>This website uses minimal cookies for functionality. We do not use intrusive tracking.</p>
+        <h4><i class="fas fa-user-lock"></i> Your rights</h4>
+        <p>You may request access, correction, or deletion of your personal data at any time by contacting us.</p>
+        <p style="margin-top:1.2rem; font-size:0.95rem; background:#ffffffb0; padding:0.8rem; border-radius:16px;"><i class="fas fa-calendar-alt"></i> Policy last updated: 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: TERMS & CONDITIONS -->
+  <div id="page-terms" class="page">
+    <div class="page-banner">
+      <div class="container">
+        <h2>Terms &amp; Conditions</h2>
+        <p>दीर्घायु fit with Mayuri</p>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="privacy-terms">
+        <h4><i class="fas fa-file-signature"></i> Acceptance of terms</h4>
+        <p>By using our services and website, you agree to these terms. If you do not agree, please refrain from using our services.</p>
+        <h4><i class="fas fa-user-md"></i> Services &amp; responsibility</h4>
+        <p>Our fitness and weight management programs are designed for general wellness. Always consult a physician before starting any new fitness or diet regimen. Results may vary.</p>
+        <h4><i class="fas fa-credit-card"></i> Payments &amp; cancellations</h4>
+        <p>Payments are due at the time of service. Cancellations must be made at least 12 hours in advance for a full refund.</p>
+        <h4><i class="fas fa-gavel"></i> Limitation of liability</h4>
+        <p>दीर्घायु fit with Mayuri is not liable for any injuries or health issues arising from participation in our programs. You participate at your own risk.</p>
+        <h4><i class="fas fa-edit"></i> Changes to terms</h4>
+        <p>We may update these terms from time to time. Continued use of our services constitutes acceptance of the updated terms.</p>
+        <p style="margin-top:1.2rem; font-size:0.95rem; background:#ffffffb0; padding:0.8rem; border-radius:16px;"><i class="fas fa-calendar-alt"></i> Terms last updated: 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem 1.8rem; margin-bottom: 0.6rem;">
+        <a href="#" data-page="home">Home</a>
+        <a href="#" data-page="about">About</a>
+        <a href="#" data-page="contact">Contact</a>
+        <a href="#" data-page="privacy">Privacy</a>
+        <a href="#" data-page="terms">Terms</a>
+      </div>
+      <div class="copyright">
+        <i class="far fa-copyright"></i> 2026 <strong>दीर्घायु fit with Mayuri</strong> — all rights reserved.
+        <p style="font-size:0.85rem; margin-top:0.3rem; color:#b8aa98;">near Ahuja garage, new medical hospital road, Chandrapur 442401</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- simple page navigation -->
+  <script>
+    (function() {
+      const navLinks = document.querySelectorAll('nav a[data-page]');
+      const footerLinks = document.querySelectorAll('.footer a[data-page]');
+      const extraLinks = document.querySelectorAll('a[data-page]'); // includes quick links
+
+      function showPage(pageId) {
+        // hide all pages
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page-' + pageId);
+        if (target) target.classList.add('active');
+        // scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function handleNavClick(e) {
+        e.preventDefault();
+        const page = this.getAttribute('data-page');
+        if (page) showPage(page);
+      }
+
+      // attach to all nav links with data-page
+      document.querySelectorAll('a[data-page]').forEach(link => {
+        link.addEventListener('click', handleNavClick);
+      });
+
+      // if url has ?page=xxx (optional)
+      const params = new URLSearchParams(window.location.search);
+      const pageParam = params.get('page');
+      if (pageParam) {
+        const validPages = ['home','about','contact','privacy','terms'];
+        if (validPages.includes(pageParam)) {
+          showPage(pageParam);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
